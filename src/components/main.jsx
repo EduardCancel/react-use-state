@@ -1,16 +1,20 @@
-
 import { useState } from "react";
 import webLanguages from "../data/language-web";
 
 function TabComponent() {
-    const [activeCard, setActiveCard] = useState(0);
+    const [activeCard, setActiveCard] = useState(1);
 
     return (
         <div className="container mt-5">
 
+
             <div className="mb-4" role="group">
-                {webLanguages.map((lang, index) => (
-                    <button key={index} className={`btn mx-2 btn-primary ${index === activeCard ? "btn-warning" : "bnt-primary"}  `} onClick={() => setActiveCard(index)}>
+                {webLanguages.map((lang) => (
+                    <button
+                        key={lang.id}
+                        className={`btn mx-2 ${lang.id === activeCard ? "btn-warning" : "btn-primary"}`}
+                        onClick={() => { setActiveCard(lang.id) }}
+                    >
                         {lang.name}
                     </button>
                 ))}
@@ -18,8 +22,14 @@ function TabComponent() {
 
             <div className="card shadow-sm">
                 <div className="card-body">
-                    <h3 className="card-title">{webLanguages[activeCard].name}</h3>
-                    <p className="card-text">{webLanguages[activeCard].description}</p>
+                    {webLanguages.map((lang) => (
+                        lang.id === activeCard && (
+                            <div key={lang.id}>
+                                <h3 className="card-title">{lang.name}</h3>
+                                <p className="card-text">{lang.description}</p>
+                            </div>
+                        )
+                    ))}
                 </div>
             </div>
         </div>
