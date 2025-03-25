@@ -10,7 +10,7 @@ function TabComponent() {
 
             <div className="mb-4" role="group">
                 {webLanguages.map((lang, index) => (
-                    <button key={index} className={`btn mx-2 btn-primary  `} onClick={() => setActiveCard(index)}>
+                    <button key={index} className={`btn mx-2 btn-primary ${index === activeCard ? "btn-warning" : "bnt-primary"}  `} onClick={() => setActiveCard(index)}>
                         {lang.name}
                     </button>
                 ))}
